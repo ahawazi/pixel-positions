@@ -12,6 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
+                "hanken-grotesk": ["Hanken Grotesk", "sans-serif"],
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
