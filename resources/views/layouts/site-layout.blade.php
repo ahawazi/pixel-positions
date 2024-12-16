@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="bg-black text-white font-hanken-grotesk pb-20">
 
     <div class="px-10">
@@ -29,9 +31,19 @@
                 <a href="#">Companies</a>
             </div>
 
-            <div>
-                <a href="#">Post a Job</a>
-            </div>
+            @auth
+                <div class="space-x-6 font-bold">
+                    <a href="/jobs/create">Post a Job</a>
+                    <a href="{{ route('dashboard') }}">Your Dashboard</a>
+                </div>
+            @endauth
+
+            @guest
+                <div class="space-x-6 font-bold">
+                    <x-login-register />
+                </div>
+            @endguest
+
         </nav>
 
         <main class="mt-10 max-w-[986px] mx-auto">
@@ -40,4 +52,5 @@
     </div>
 
 </body>
+
 </html>
