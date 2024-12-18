@@ -19,7 +19,7 @@
     <div class="px-10">
         <nav class="flex justify-between items-center py-4 border-b border-white/10">
             <div>
-                <a href="/">
+                <a href="{{ route('job.index') }}">
                     <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
                 </a>
             </div>
@@ -33,7 +33,7 @@
 
             @auth
                 <div class="space-x-6 font-bold">
-                    <a href="/jobs/create">Post a Job</a>
+                    <a href="{{ route('job.create') }}">Post a Job</a>
                     <a href="{{ route('dashboard') }}">Your Dashboard</a>
                 </div>
             @endauth

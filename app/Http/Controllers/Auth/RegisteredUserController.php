@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/');
-        // return redirect(route('job.index', absolute: false));
+        // return redirect('/');
+        return redirect(route('job.index', absolute: false));
     }
 }
