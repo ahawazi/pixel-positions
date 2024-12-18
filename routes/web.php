@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('/', JobController::class);
+
+Route::get('/search', SearchController::class)->name('search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
