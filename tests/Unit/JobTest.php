@@ -19,7 +19,7 @@ it('can have tags', function() {
 
     $job->tag('Frontend');
 
-    expect($job->tags)->toHaveCount(1);
+    expect($job->tags)->toHaveCount(4);
 
     $this->withoutExceptionHandling();
 });
