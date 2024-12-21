@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Employer;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,4 +28,13 @@ class JobFactory extends Factory
             'featured' => fake()->boolean(),
         ];
     }
+
+    public function configure(): static
+    {
+        return $this->afterCreating(function ($job) {
+            $tags = Tag::factory()->count(3)->create();
+            $job->tags()->sync($tags->pluck('id')->toArray());
+        });
+    }
+
 }
