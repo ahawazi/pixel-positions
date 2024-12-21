@@ -17,4 +17,21 @@ beforeEach(function () {
     ]);
 });
 
+it('displays the job index page with job titles', function () {
+    $response = get(route('job.index'));
+
+    $response->assertSee('Laravel Developer', false);
+});
+
+it('displays featured and non-featured jobs', function () {
+    Job::factory()->count(2)->for($this->employer)->create([
+        'title' => 'PHP Developer',
+        'featured' => false,
+    ]);
+
+    $response = get(route('job.index'));
+
+    $response->assertSee('Laravel Developer', false);
+    $response->assertSee('PHP Developer', false);
+});
 
