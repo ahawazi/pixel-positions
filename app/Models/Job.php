@@ -30,7 +30,7 @@ class Job extends Model
     {
         $tag = Tag::firstOrCreate(['name' => $name]);
 
-        $this->tags()->attach($tag);
+        $this->tags()->syncWithoutDetaching([$tag->id]);
     }
 
     public function tags(): BelongsToMany
