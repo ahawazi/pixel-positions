@@ -46,7 +46,7 @@ class JobController extends Controller
 
         if ($attributes['tags'] ?? false) {
             foreach (explode(',', $attributes['tags']) as $tag) {
-                $job->tag($tag);
+                $job->tag(trim($tag));
             }
         }
 
