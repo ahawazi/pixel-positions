@@ -8,30 +8,24 @@ use function Pest\Laravel\be;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
+
     $this->employer = Employer::factory()->for($this->user)->create();
+
     be($this->user);
 
-    Job::factory()->count(3)->for($this->employer)->create([
-        'title' => 'Laravel Developer',
-        'featured' => true,
-    ]);
+    $this->jobs = Job::factory()->count(3)->for($this->employer)->create();
+
+    $this->jobs->each(function ($job) {
+        $job->tag('Tech');
+    });
 });
 
-it('displays the job index page with job titles', function () {
-    $response = get(route('job.index'));
-
-    $response->assertSee('Laravel Developer', false);
+it('displays the job index page', function () {
+    get(route('job.index'))
+        ->assertSee($this->jobs->first()->title)
+        ->assertSee($this->jobs->first()->salary)
+        ->assertSee($this->jobs->first()->url)
+        ->assertSee($this->jobs->first()->tags->first()->name)
+        ->assertSee($this->jobs->first()->employer->logo)
+        ->assertSee($this->jobs->first()->employer->name);
 });
-
-it('displays featured and non-featured jobs', function () {
-    Job::factory()->count(2)->for($this->employer)->create([
-        'title' => 'PHP Developer',
-        'featured' => false,
-    ]);
-
-    $response = get(route('job.index'));
-
-    $response->assertSee('Laravel Developer', false);
-    $response->assertSee('PHP Developer', false);
-});
-
