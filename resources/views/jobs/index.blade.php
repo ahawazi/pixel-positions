@@ -18,7 +18,7 @@
         <section>
             <x-section-heading>Tags</x-section-heading>
 
-            <div class="mt-6 space-x-1">
+            <div class="mt-6 space-x-1 grid grid-cols-7 gap-2 text-center">
                 @foreach ($tags as $tag)
                     <x-tag :$tag />
                 @endforeach
