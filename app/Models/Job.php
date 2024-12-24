@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Scout\Searchable;
 
 class Job extends Model
 {
     /** @use HasFactory<\Database\Factories\JobFactory> */
-    use HasFactory;
+    use HasFactory, Searchable;
     protected $fillable = [
         'title',
         'salary',
@@ -36,5 +37,19 @@ class Job extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+     /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        $array = $this->toArray();
+
+        unset($array['updated_at']);
+
+        return $array;
     }
 }
