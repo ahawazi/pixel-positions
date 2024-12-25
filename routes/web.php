@@ -6,6 +6,10 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/meilisearch', function () {
+    return view('meilisearch');
+})->name('meilisearch');
+
 Route::resource('/', JobController::class)->names([
     'index' => 'job.index',
     'create' => 'job.create',
