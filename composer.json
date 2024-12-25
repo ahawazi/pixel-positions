@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "algolia/algoliasearch-client-php": "^4.11",
+        "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.31",
         "laravel/scout": "^10.11",
         "laravel/tinker": "^2.9",
